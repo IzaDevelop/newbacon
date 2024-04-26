@@ -37,7 +37,7 @@
         <p>{{ user.email }}</p>
       </div>
       <div class="card-icons">
-        <button @click="detailUser(user.id)">
+        <button @click="updateUser(user.id)">
           <img src="edit.png" alt="">
         </button>
 
@@ -45,7 +45,7 @@
           <img src="delete.png" alt="">
         </button>
 
-        <button @click="updateUser(user.id)">
+        <button @click="detailUser(user.id)">
           <img src="view.png" alt="">
         </button>
       </div>
@@ -99,18 +99,22 @@ export default {
       try {
         const response = await api.delete(`/api/users/${userId}`);
         console.log('Usuário excluído com sucesso:', response.data);
+        alert('Usuário excluído com sucesso')
         this.fetchData();
       } catch (error) {
         console.error('Erro ao excluir o usuário:', error);
+        alert('Erro ao excluir o usuário')
       }
     },
     async updateUser(userId) {
       try {
         const response = await api.put(`/api/users/${userId}`);
-        console.log('Usuário atualizado com sucesso:', response.data);
+        console.log(response.data)
+        alert('Usuário atualizado com sucesso');
         this.fetchData();
       } catch (error) {
         console.error('Erro ao atualizar o usuário', error)
+        alert('Erro ao atualizar o usuário')
       }
     },
     async createUser() {
@@ -119,11 +123,13 @@ export default {
           name: this.newUser.name,
           role: this.newUser.role
         });
-        console.log('Novo usuário criado com sucesso:', response.data);
+        console.log(response.data)
+        alert('Novo usuário criado com sucesso');
         this.newUser.name = '';
         this.newUser.role = '';
         this.fetchData();
       } catch (error) {
+        alert('Erro ao criar novo usuário')
         console.error('Erro ao criar novo usuário:', error);
       }
     },
@@ -289,14 +295,50 @@ export default {
   cursor: pointer;
   outline: none;
 }
-</style>
 
+@media screen and (max-width: 425px) {
+  .header {
+    max-width: 350px
+  }
 
-<!-- <script>
-export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
+  .header h1 {
+    font-size: 36px;
+  }
+
+  .false-button,
+  .true-button {
+    padding: 15px 30px;
+    font-size: 12px;
+  }
+
+  .create-user-form form {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .create-user-form,
+  .card {
+    max-width: 300px;
+  }
+
+  .card {
+    height: 80px;
+    padding: 8px;
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .card-image img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .card-content h2 {
+    font-size: 12px;
+  }
+
+  .card-content p {
+    font-size: 10px;
   }
 }
-</script>  -->
+</style>

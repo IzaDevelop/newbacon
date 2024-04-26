@@ -161,4 +161,27 @@ export default {
 .final-content div {
     padding-bottom: 20px;
 }
+
+@media screen and (max-width: 425px) {
+    .user-details .initial-content span {
+        font-size: 28px;
+    }
+    
+    .user-details .initial-content button {
+        font-size: 12px;
+    }
+    
+    .middle-content img {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .middle-content div p,
+    .final-content div p,
+    .middle-content div span,
+    .final-content div span {
+        font-size: 14px;
+        padding-bottom: 5px ;
+    }
+}
 </style>
